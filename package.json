@@ -11,7 +11,16 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "mpvue": "^1.0.11"
+    "apollo-link": "^1.2.2",
+    "apollo-link-http": "^1.5.4",
+    "apollo-link-rest": "^0.3.1",
+    "apollo-link-ws": "^1.0.8",
+    "event-target": "^1.2.2",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
+    "mpvue": "^1.0.11",
+    "subscriptions-transport-ws": "^0.9.11",
+    "vue-apollo": "^3.0.0-beta.19"
   },
   "devDependencies": {
     "mpvue-loader": "^1.0.13",

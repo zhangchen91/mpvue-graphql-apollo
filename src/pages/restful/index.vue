@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <h3>Welcome to React + GraphQL + Apollo minimal boilerplate</h3>
+      <h3>RESTful</h3>
       <card :text="user.id"></card>
       <card :text="user.name"></card>
       <card :text="user.gender"></card>
@@ -9,28 +9,29 @@
       <card :text="user.created_at"></card>
       <card :text="user.updated_at"></card>
     </div>
-    <a href="/pages/subscription/main" class="button">去往Subscription示例页面</a>
-    <a href="/pages/restful/main" class="button">去往RESTful示例页面</a>
   </div>
 </template>
 
 <script>
 import card from '@/components/card'
 import fetch from '@/adapter/fetch'
+import headers from '@/adapter/headers'
 
 import { execute, makePromise } from 'apollo-link'
-import { HttpLink } from 'apollo-link-http'
+import { RestLink } from 'apollo-link-rest'
 import gql from 'graphql-tag'
 
-const uri = 'http://127.0.0.1:7001/graphql'
-const link = new HttpLink({
+global.Headers = headers // FIXME: apollo-link-rest 目前依赖全局的 Headers
+
+const uri = 'http://127.0.0.1:7001/api/'
+const link = new RestLink({
   uri,
-  fetch
+  customFetch: fetch
 })
 
 const operation = {
   query: gql`query {
-    getUser(id: 1) {
+    getUser(id: 1) @rest(type: "User", path: "v1/user/:id") {
       id
       name
       gender
